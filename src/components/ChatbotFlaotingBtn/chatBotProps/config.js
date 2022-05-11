@@ -1,4 +1,5 @@
 import { createChatBotMessage } from "react-chatbot-kit";
+import RecommendMovie from "../../RecommendMovie";
 
 const config = {
     initialMessages: [
@@ -15,7 +16,20 @@ const config = {
     customElements: {
         header: () => <div></div>,
         userAvatar: () => <div></div>,
-    }
+    },
+    state: {
+        actorNames: [],
+        gettingActorNames: false,
+        genres: [],
+        gettingGenres: false,
+    },
+    widgets: [
+        {
+            widgetName: 'RecommendMovies',
+            widgetFunc: (props) => <RecommendMovie {...props} />,
+            mapStateToProps: ["actorNames", "genres"],
+        }
+    ]
 }
 
 export default config;

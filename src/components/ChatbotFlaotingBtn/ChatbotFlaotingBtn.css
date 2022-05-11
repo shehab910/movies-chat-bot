@@ -1,8 +1,8 @@
 .chatbot-container{
     position: fixed;
-    right: 30px;
-    bottom: 110px;
-    margin: 40px 0;
+    /* right: 30px;
+    bottom: 110px; */
+    /* margin: auto 0; */
 }
 .chatbot-btn{
     position: fixed;

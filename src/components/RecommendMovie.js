@@ -1,23 +1,14 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import useEffectOnce from "../utils/useEffectOnce";
-import {discoverWithCast} from '../utils/apiUtils'
+import {discoverGeneral} from '../utils/apiUtils'
 
-function RecommendMovie() {
+function RecommendMovie({actorNames, genres, realeseDateGT}) {
    const [discoverValue, setDiscoverValue] = useState("");
 
-   const actorNames = useMemo(
-      () => [
-         "scarlett johansson",
-         "robert downey jr",
-         "chris evans",
-         "mark ruffalo",
-      ],
-      []
-   );
 
    useEffectOnce(() => {
       return async () => {
-         const disMovies = await discoverWithCast(actorNames);
+         const disMovies = await discoverGeneral({actorNames, genres, realeseDateGT});
          setDiscoverValue(
             disMovies.results.map((movie, index) => {
                return (
@@ -32,7 +23,7 @@ function RecommendMovie() {
 
    return (
       <>
-         <div>RecommendMovie</div>
+         <h2>Recommended Movies:</h2>
          {discoverValue}
       </>
    );
