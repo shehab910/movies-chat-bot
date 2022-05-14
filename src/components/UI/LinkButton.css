@@ -13,12 +13,12 @@
     border: 1px solid transparent;
     border-radius: 4px;
     margin-inline-start: auto;
-    color: rgb(55, 107, 126);
+    color: #376b7e;
     background-color: #efefef;
     width: fit-content;
 
 }
 .btn:hover{
     color: #efefef;
-    background-color: rgb(55, 107, 126);
+    background-color: #376b7e;
 }
