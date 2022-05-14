@@ -1,5 +1,8 @@
 import makeFetchUrl from "../utils/makeFetchUrl";
 
+const genreIdsMap = {};
+
+
 export const fetchActorsIds = async (actorNames) => {
    let actorsIds = [];
    for (let i = 0; i < actorNames.length; i++) {
@@ -16,21 +19,29 @@ export const fetchActorsIds = async (actorNames) => {
    return actorIdsJoined;
 };
 
-export const fetchGenreIds = async (genreNames) => {
-   //make sure format is correct
-   genreNames = genreNames.map((genre) => genre.trim().toLowerCase());
-
+export const fetchGenreIdsMap = async () => {
    const genreUrl = makeFetchUrl("/genre/movie/list");
    const response = await fetch(genreUrl);
    const data = await response.json();
-
-   const genreIdsMap = {};
    data.genres.forEach((genreAndID) => genreIdsMap[genreAndID.name.toLowerCase()] = genreAndID.id);
-   
+}
+
+export const getGenreIds = async (genreNames) => {
+   if(genreNames.length === 0) 
+      await fetchGenreIdsMap();
+   //make sure format is correct
+   genreNames = genreNames.map((genre) => genre.trim().toLowerCase());
    const genreIds = genreNames.map((genreName) =>  genreIdsMap[genreName.toLowerCase()] );
 
    const genreIdsJoined = genreIds.join(",");
    return genreIdsJoined;
+}
+
+export const getGenreNames = async (genreIds) => {
+   if(genreIds.length === 0) 
+      await fetchGenreIdsMap();
+   const genreNames = genreIds.map((genreId) => Object.keys(genreIdsMap).find(key => genreIdsMap[key] === genreId));
+   return genreNames;
 }
 
 export const discoverWithCast = async (actorNames) => {
@@ -42,8 +53,8 @@ export const discoverWithCast = async (actorNames) => {
 };
 export const discoverGeneral = async ({ actorNames, genres, realeseDateGT}) => {
    const actorIdsJoined = actorNames === undefined ? undefined : await fetchActorsIds(actorNames);
-   const genreIdsJoined = genres === undefined ? undefined : await fetchGenreIds(genres);
-   console.log(actorIdsJoined);
+   const genreIdsJoined = genres === undefined ? undefined : await getGenreIds(genres);
+   // console.log(actorIdsJoined);
    const queryParams = {};
    if (actorIdsJoined) 
       queryParams.with_cast = actorIdsJoined;
