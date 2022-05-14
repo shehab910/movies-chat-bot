@@ -35,7 +35,7 @@ function RecommendMovie({actorNames, genres, realeseDateGT}) {
          const moviesList = (
                <ul className="movie-list-container">
                   {mappedMovies.map(movie => (
-                     <MovieCard movieDetails={movie} />
+                     <MovieCard key={movie.id} movieDetails={movie} />
                   ))}
                </ul>
 
