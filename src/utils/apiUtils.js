@@ -60,7 +60,7 @@ export const discoverWithCast = async (actorNames) => {
    return disMovies;
 };
 
-export const discoverGeneral = async ({ actorNames, genres, realeseDateGT}) => {
+export const discoverGeneral = async ({ actorNames, genres, realeseDateGT, resultsLimit = 5}) => {
    const actorIdsJoined = actorNames === undefined ? undefined : await fetchActorsIds(actorNames);
    const genreIdsJoined = genres === undefined ? undefined : await getGenreIds(genres);
    // console.log(actorIdsJoined);
@@ -76,6 +76,7 @@ export const discoverGeneral = async ({ actorNames, genres, realeseDateGT}) => {
    console.log(url);
    const res = await fetch(url);
    const disMovies = await res.json();
+   disMovies.results = disMovies.results.slice(0, resultsLimit);
    return disMovies;
 
 }
