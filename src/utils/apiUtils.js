@@ -19,6 +19,14 @@ export const fetchActorsIds = async (actorNames) => {
    return actorIdsJoined;
 };
 
+export const fetchMovieCredits = async (movieId) => {
+   const movieCreditsUrl = makeFetchUrl(`/movie/${movieId}/credits`);
+   const res = await fetch(movieCreditsUrl);
+   const data = await res.json();
+   console.log(data);
+   return data;
+};
+
 export const fetchGenreIdsMap = async () => {
    const genreUrl = makeFetchUrl("/genre/movie/list");
    const response = await fetch(genreUrl);
@@ -51,6 +59,7 @@ export const discoverWithCast = async (actorNames) => {
    const disMovies = await res.json();
    return disMovies;
 };
+
 export const discoverGeneral = async ({ actorNames, genres, realeseDateGT}) => {
    const actorIdsJoined = actorNames === undefined ? undefined : await fetchActorsIds(actorNames);
    const genreIdsJoined = genres === undefined ? undefined : await getGenreIds(genres);
