@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useEffectOnce from "../utils/useEffectOnce";
-import {discoverGeneral} from '../utils/apiUtils'
+import {discoverGeneral, getGenreNames} from '../utils/apiUtils'
+import MovieCard from "./UI/MovieCard";
 
 function RecommendMovie({actorNames, genres, realeseDateGT}) {
    const [discoverValue, setDiscoverValue] = useState("");
@@ -9,15 +10,37 @@ function RecommendMovie({actorNames, genres, realeseDateGT}) {
    useEffectOnce(() => {
       return async () => {
          const disMovies = await discoverGeneral({actorNames, genres, realeseDateGT});
-         setDiscoverValue(
-            disMovies.results.map((movie, index) => {
-               return (
-                  <div key={index}>
-                     <p>{movie.original_title}</p>
-                  </div>
-               );
-            })
-         );
+
+         const mappedMovies = disMovies.results.map( movie => {
+            
+            const posterUrl = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+            const movieDetails = {
+               title: movie.original_title,
+               desc: movie.overview,
+               posterUrl,
+               genreIds: movie.genre_ids,
+               id: movie.id,
+               voteAvg: movie.vote_average,
+               voteCount: movie.vote_count,
+            }
+            return movieDetails;
+         });
+
+         for (let i = 0; i < mappedMovies.length; i++) {
+            const movie = mappedMovies[i];
+            const genres = await getGenreNames(movie.genreIds);
+            movie.genres = genres;
+         }
+
+         const moviesList = (
+               <ul className="movie-list-container">
+                  {mappedMovies.map(movie => (
+                     <MovieCard movieDetails={movie} />
+                  ))}
+               </ul>
+
+            );
+         setDiscoverValue(moviesList);
       };
    });
 

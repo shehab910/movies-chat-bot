@@ -1,0 +1,43 @@
+.poster{
+    max-width: 110px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+}
+.movie-card-list-item{
+    margin: 1rem 0;
+}
+.movie-card{
+    padding: 0.5rem;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+}
+
+.details{
+    margin-top: 0.5rem;
+}
+
+.details p{
+    margin: 0.5rem 0;
+}
+
+.movie-title{
+    color: rgb(55, 107, 126);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.movie-list-container{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.movie-genres{
+    color: rgb(100, 100, 100);
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+}

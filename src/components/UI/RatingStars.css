@@ -1,0 +1,24 @@
+.star {
+   display: inline-block;
+}
+
+.stars-container {
+   display: flex;
+   align-items: flex-end;
+   font-size: 0.7rem;
+   color: rgb(100, 100, 100);
+}
+
+.inactive,
+.active {
+   background: transparent;
+   user-select: none;
+}
+
+.inactive {
+   color: #f1f1e8;
+}
+
+.active {
+   color: red;
+}
