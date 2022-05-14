@@ -41,9 +41,9 @@ class ActionProvider {
     }
 
     addMessagetoState = message => {
-      console.log(message);
+      // console.log(message);
       this.setState(prev => {
-      console.log(prev);
+      // console.log(prev);
         return({
         ...prev,
         messages: [...prev.messages, message]
