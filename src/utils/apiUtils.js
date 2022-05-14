@@ -27,6 +27,16 @@ export const fetchMovieCredits = async (movieId) => {
    return data;
 };
 
+export const fetchMovieTrailerURL = async (movieId) => {
+   const movieTrailerUrl = makeFetchUrl(`/movie/${movieId}/videos`);
+   const res = await fetch(movieTrailerUrl);
+   const data = await res.json();
+   const result = data.results.find((result) => result.type === "Trailer");
+   const youtubeURL = `https://www.youtube.com/watch?v=${result.key}`;
+   console.log(youtubeURL);
+   return youtubeURL;
+};
+
 export const fetchGenreIdsMap = async () => {
    const genreUrl = makeFetchUrl("/genre/movie/list");
    const response = await fetch(genreUrl);
