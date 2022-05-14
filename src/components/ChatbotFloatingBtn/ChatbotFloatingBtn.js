@@ -6,9 +6,9 @@ import config from "./chatBotProps/config";
 import MessageParser from "./chatBotProps/MessageParser";
 import ActionProvider from "./chatBotProps/ActionProvider";
 
-import './ChatbotFlaotingBtn.css';
+import './ChatbotFloatingBtn.css';
 
-const ChatbotFlaotingBtn = () => {
+const ChatbotFloatingBtn = () => {
     const [showBot, toggleBot] = useState(true);
     return (
         <>
@@ -33,4 +33,4 @@ const ChatbotFlaotingBtn = () => {
     );
 }
 
-export default ChatbotFlaotingBtn;
+export default ChatbotFloatingBtn;

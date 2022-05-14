@@ -1,4 +1,4 @@
-import ChatbotFlaotingBtn from "./components/ChatbotFlaotingBtn/ChatbotFlaotingBtn";
+import ChatbotFloatingBtn from "./components/ChatbotFloatingBtn/ChatbotFloatingBtn";
 import './index.css';
 import { discoverGeneral, fetchGenreIds } from "./utils/apiUtils";
 import useEffectOnce from "./utils/useEffectOnce";
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="main-cointainer">
-      <ChatbotFlaotingBtn />
+      <ChatbotFloatingBtn />
     </div>
   )
 }
