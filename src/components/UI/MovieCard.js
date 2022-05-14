@@ -1,7 +1,9 @@
-import './MovieCard.css';
 import StarRating from './RatingStars';
+import LinkButton from './LinkButton';
+import './MovieCard.css';
+
 const MovieCard = ({movieDetails}) => {
-    const { title, desc, posterUrl, genres, id, voteAvg, voteCount} = movieDetails;
+    const { title, desc, posterUrl, genres, id, voteAvg, voteCount, trailerURL} = movieDetails;
 
     const formattedGenres = genres.map(genre => {
         let genreName = '';
@@ -20,6 +22,7 @@ const MovieCard = ({movieDetails}) => {
                     <span className='movie-genres'>{formattedGenres}</span>
                     <StarRating value={voteAvg/2} />
                     <div className='movie-genres'>{voteCount} votes</div>
+                    <LinkButton href={trailerURL}>Watch Trailer</LinkButton>
                 </div>
             </div>
         </li>

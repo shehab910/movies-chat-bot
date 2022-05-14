@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useEffectOnce from "../utils/useEffectOnce";
-import {discoverGeneral, getGenreNames} from '../utils/apiUtils'
+import {discoverGeneral, getGenreNames, fetchMovieTrailerURL} from '../utils/apiUtils'
 import MovieCard from "./UI/MovieCard";
 
 function RecommendMovie({actorNames, genres, realeseDateGT}) {
@@ -30,6 +30,8 @@ function RecommendMovie({actorNames, genres, realeseDateGT}) {
             const movie = mappedMovies[i];
             const genres = await getGenreNames(movie.genreIds);
             movie.genres = genres;
+            const ytTrailerURL = await fetchMovieTrailerURL(movie.id);
+            movie.trailerURL = ytTrailerURL;
          }
 
          const moviesList = (
