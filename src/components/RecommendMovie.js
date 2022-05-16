@@ -14,6 +14,7 @@ function RecommendMovie({actorNames, genres, realeseDateGT}) {
          const mappedMovies = disMovies.results.map( movie => {
             
             const posterUrl = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+            const movieUrl = `https://www.themoviedb.org/movie/${movie.id}`;
             const movieDetails = {
                title: movie.original_title,
                desc: movie.overview,
@@ -22,6 +23,7 @@ function RecommendMovie({actorNames, genres, realeseDateGT}) {
                id: movie.id,
                voteAvg: movie.vote_average,
                voteCount: movie.vote_count,
+               movieUrl,
             }
             return movieDetails;
          });

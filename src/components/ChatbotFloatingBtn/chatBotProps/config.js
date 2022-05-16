@@ -4,6 +4,7 @@ import RecommendMovie from "../../RecommendMovie";
 const config = {
     initialMessages: [
         createChatBotMessage('Hi, how can I help you'),
+        createChatBotMessage('Type "recommend" to display commands'),
     ],
     customStyles: {
         botMessageBox: {
