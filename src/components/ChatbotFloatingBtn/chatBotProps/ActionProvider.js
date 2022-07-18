@@ -11,15 +11,32 @@ class ActionProvider {
    }
 
    handleRecommendMovies() {
-      const message = this.createChatbotMessage(
-         "commands: \nactor \ngenre \nsearch \nsimillar"
+      this.addMessagetoState(this.createChatbotMessage("commands:"));
+      this.addMessagetoState(
+         this.createChatbotMessage(
+            "actor: recommends movies with actors you like"
+         )
       );
-      this.addMessagetoState(message);
+      this.addMessagetoState(
+         this.createChatbotMessage(
+            "genre: recommends movies with genres you like"
+         )
+      );
+      this.addMessagetoState(
+         this.createChatbotMessage(
+            "search: after you enter your favorite actors and genres enter search to see movies that fit your taste"
+         )
+      );
+      this.addMessagetoState(
+         this.createChatbotMessage(
+            "simillar: recommends movies simillar to the movie you enter"
+         )
+      );
    }
 
    handleFindByActors() {
       const message = this.createChatbotMessage(
-         "Enter the actors each in a line then search"
+         "Enter the actors each in a line, then enter 'search'"
       );
 
       this.reset();
@@ -34,7 +51,7 @@ class ActionProvider {
 
    handleFindByGenres() {
       const message = this.createChatbotMessage(
-         "Enter the genres each in a line"
+         "Enter the genres each in a line, then enter 'search'"
       );
 
       this.reset();

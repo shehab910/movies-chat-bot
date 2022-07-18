@@ -1,4 +1,12 @@
-const COMMANDS = ["actor", "genre", "recommend", "hello", "simillar"];
+const COMMANDS = [
+   "actor",
+   "genre",
+   "recommend",
+   "hello",
+   "simillar",
+   "help",
+   "command",
+];
 class MessageParser {
    constructor(actionProvider, state) {
       this.actionProvider = actionProvider;
@@ -17,7 +25,11 @@ class MessageParser {
          if (message.includes("genre"))
             this.actionProvider.handleFindByGenres();
 
-         if (message.includes("recommend"))
+         if (
+            message.includes("recommend") ||
+            message.includes("help") ||
+            message.includes("command")
+         )
             this.actionProvider.handleRecommendMovies();
          if (message.includes("simillar"))
             this.actionProvider.handleSimillarMovies();

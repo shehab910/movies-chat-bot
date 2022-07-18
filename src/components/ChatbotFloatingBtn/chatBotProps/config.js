@@ -2,7 +2,11 @@ import { createChatBotMessage } from "react-chatbot-kit";
 import RecommendMovie from "../../RecommendMovie";
 
 const config = {
-   initialMessages: [createChatBotMessage("Hi, how can I help you")],
+   initialMessages: [
+      createChatBotMessage(
+         "Hi, how can I help you, enter 'help' to see all commands"
+      ),
+   ],
    customStyles: {
       botMessageBox: {
          backgroundColor: "#376B7E",
